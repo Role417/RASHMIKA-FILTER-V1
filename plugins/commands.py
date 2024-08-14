@@ -26,7 +26,9 @@ async def start(client, message):
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [
             [
-                InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                InlineKeyboardButton('⤬ 𝐀ᴅᴅ 𝐌ᴇ 𝐓ᴏ 𝐘ᴏᴜʀ 𝐆ʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            ],[
+            InlineKeyboardButton('⤬ 𝐀ᴅᴅ 𝐌ᴇ 𝐓ᴏ 𝐘ᴏᴜʀ 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⤬', url=f'http://t.me/{temp.U_NAME}?startchannel=true')        
             ],[
                 InlineKeyboardButton('🖥 𝐍𝐄𝐖 𝐎𝐓𝐓 𝐔𝐏𝐃𝐓𝐄𝐒 🖥', url=f'https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS')
             ],
@@ -47,7 +49,9 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            InlineKeyboardButton('⤬ 𝐀ᴅᴅ 𝐌ᴇ 𝐓ᴏ 𝐘ᴏᴜʀ 𝐆ʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            ],[
+            InlineKeyboardButton('⤬ 𝐀ᴅᴅ 𝐌ᴇ 𝐓ᴏ 𝐘ᴏᴜʀ 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⤬', url=f'http://t.me/{temp.U_NAME}?startchannel=true')        
             ],[
             InlineKeyboardButton("👥 𝐆𝐑𝐎𝐔𝐏 - 𝟏", url=f"https://t.me/+FPt__pYntKFmODg1"),
             InlineKeyboardButton("𝐆𝐑𝐎𝐔𝐏 - 𝟐 👥", url=f"https://t.me/ARAKAL_THERAVAD_GROUP_02")
@@ -72,31 +76,4 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
-                                              
-@Client.on_message(filters.command('deleteall') & filters.user(ADMINS))
-async def delete_all_index(bot, message):
-    await message.reply_text(
-        'This will delete all indexed files.\nDo you want to continue??',
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        text="YES", callback_data="autofilter_delete"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        text="CANCEL", callback_data="close_data"
-                    )
-                ],
-            ]
-        ),
-        quote=True,
-    )
-
-
-@Client.on_callback_query(filters.regex(r'^autofilter_delete'))
-async def delete_all_index_confirm(bot, message):
-    await Media.collection.drop()
-    await message.answer(MSG_ALRT)
-    await message.message.edit('Succesfully Deleted All The Indexed Files.')
+                                             
