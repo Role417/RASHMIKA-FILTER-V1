@@ -5,7 +5,7 @@ from pyrogram.errors import UserIsBlocked, PeerIdInvalid
 
 
 @Client.on_chat_join_request()
-async def accept_request(client, r):
+async def accept_request(bot, r):
 
     rm = InlineKeyboardMarkup([[
         InlineKeyboardButton("💥 NEW MOVIES 💥", url=f"https://t.me/OTT_ARAKAL_THERAVAD_MOVIESS")
